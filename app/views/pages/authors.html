@@ -1,0 +1,19 @@
+<div class="page" ng-controller="AuthorsCtrl">
+    <div>Dynamic editable list here</div>
+    <a href="#/pages/authors" ng-click="add()">[+]</a>
+    <ul ng-repeat="author in authors">
+        <li>
+            <div>
+                {{author.id}}
+            </div>
+            <div>
+                <edit-in-place  value="author.name"></edit-in-place>
+            </div>
+            <div>
+                <img src="{{author.avatar}}"/>
+            </div>
+            <a href="#/pages/authors" ng-click="delete(author.id)">[delete]</a>&nbsp;
+            <a href="#/pages/authors" ng-click="save(author)">[save]</a>
+        </li>
+    </ul>
+</div>
