@@ -33,7 +33,7 @@ GET    /partners/:id (token required)
 ```javascript
 POST /partners
 {
-	"email:      "registered@email",
+	"email":      "registered@email",
 	"password":  "password",
 	"company":   "some name"
 }
@@ -74,7 +74,7 @@ __Partner Object:__
 ```javascript
 POST /sessions
 {
-	"email:      "registered@email",
+	"email":      "registered@email",
 	"password":  "password"
 }
 ```
@@ -85,7 +85,7 @@ Result: __Token Object__:
 {
 	"token":      "f09023a4b37fc7ae1c5d5d48b89b9466",
 	"expiration": "2015-07-03T15:12:21.209645494+03:00",
-	"partner_id":    1
+	"partner_id": 1
 }
 ```
 
