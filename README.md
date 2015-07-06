@@ -116,7 +116,7 @@ __Policy object:__
 ```javascript
 {
 
-	"policy":         "uuencoded_policy_data",
+	"policy":         "policy_data",
 	"acl":            "public-read",
 	"url":            "http://xxx.s3.amazonaws.com/",
 	"AWSAccessKeyId": "AWS_KEY_ID",
@@ -147,7 +147,8 @@ __Author Object:__
 	"status": "Yep",
 		
 	"avatar": {
-		"id":   "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+	    "id":   1, 
+		"key":  "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 		"link": "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb1"
 		"content_type": "image/jpeg"
 	},
@@ -169,7 +170,8 @@ PUT /author/1
 	"status": "Yep yep",
 	
     "avatar": {
-    	"id": "1b2345f4-66bc-5e72-20d1-14321a543eb2" // client generated uuid, see "Working with media" part.
+        "id":  "1",
+    	"key": "1b2345f4-66bc-5e72-20d1-14321a543eb2" // client generated uuid, see "Working with media" part.
     	"content_type": "image/jpeg"
 	}
 }
@@ -215,7 +217,8 @@ __Capsule object:__
 
 	"avatar": {
 		// media object
-		"id":   "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+		"id":    1,
+		"key":   "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 		"link": "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb1",
 		"content_type": "image/jpeg"
 	},
@@ -224,7 +227,8 @@ __Capsule object:__
 		// media objects
 		// view corresponds to the order
 		{
-			"id":   "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+		    "id":    7,
+			"key":   "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 			"link": "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb1",
 			"content_type": "video/quicktime",
 			// makes sense only for video types, could be user defined
@@ -236,18 +240,21 @@ __Capsule object:__
 			
 		},
 		{
-			"id":           "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+		    "id":            8,
+			"key":           "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 			"text_value":   "text block",
 			"content_type": "text/plain"
 		},
 		{
-			"id":           "9a8935f4-26bc-4e72-80d6-26690b282eb2",
+			"id":            9,
+			"key":           "9a8935f4-26bc-4e72-80d6-26690b282eb2",
 			"link":         "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb2",
 			"content_type": "image/jpeg",
 
 		},
 		{
-			"id":           "9a8935f4-26bc-4e72-80d6-26690b282eb3",
+			"id":           10,
+			"key":          "9a8935f4-26bc-4e72-80d6-26690b282eb3",
 			"link":         "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb3",
 			"content_type": "audio/x-caf",
 
@@ -256,7 +263,8 @@ __Capsule object:__
 	
 	"background": {
 		// media object
-		"id":  "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+		"id":   1,
+		"key":  "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 		"link": "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb1",
 	}
 	
@@ -269,7 +277,8 @@ For media types:
 
 ```javascript
 {
-	"id":           "9a8935f4-26bc-4e72-80d6-26690b282eb1" // user generated uuid v4
+	"id":           1,
+	"key":          "9a8935f4-26bc-4e72-80d6-26690b282eb1" // user generated uuid v4
 	"link":         "http://..."                           // server generated link, read-only
 	"content-type": "image/jpeg" 
 }
@@ -280,7 +289,7 @@ For text blocks:
 
 ```javascript
 {
-	"id":           "9a8935f4-26bc-4e72-80d6-26690b282eb1",
+	"id":           "2",
 	"text_value":   "text block",
 	"content_type": "text/plain"
 }
