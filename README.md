@@ -20,62 +20,13 @@ HTTP/1.1 409 Conflict
 }
 ```
 
-### Partners
-
-Methods:
-
-```
-POST   /partners (create new partner/registration, public method)
-GET    /partners/:id (token required)
-```
-
-
-```javascript
-POST /partners
-{
-	"email":      "registered@email",
-	"password":  "password",
-	"company":   "some name"
-}
-```
-
-__Partner Object:__
-
-```javascript
-{
-    "id": 196,
-    "company_name": "",
-    "email": "my1447",
-    "plan": {
-        "id": 1,
-        "name": "Testing",
-        "price": 0,
-        /*
-        TODO
-        Plan limitations will be here.
-        e.g.:
-        "authors_count": 3,
-		*/
-    },
-    "planId": 1,
-    "period": {
-        "id": 1,
-        "name": "1 Month",
-        "value": 1,
-        "discount": 0
-    },
-    "periodId": 1,
-    "paidTill": "0001-01-01T00:00:00Z" // free plan
-}
-```
-
 ### Login
 
 ```javascript
 POST /sessions
 {
 	"email":      "registered@email",
-	"password":  "password"
+	"password":   "password"
 }
 ```
 
@@ -85,7 +36,7 @@ Result: __Token Object__:
 {
 	"token":      "f09023a4b37fc7ae1c5d5d48b89b9466",
 	"expiration": "2015-07-03T15:12:21.209645494+03:00",
-	"partner_id": 1
+	"user_id": 1
 }
 ```
 
@@ -99,8 +50,6 @@ Token: f09023a4b37fc7ae1c5d5d48b89b9466
 
 DELETE /sessions/f09023a4b37fc7ae1c5d5d48b89b9466
 ```
-
------
 
 ### Policy
 S3 policy data
@@ -125,34 +74,50 @@ __Policy object:__
 ```
 Fields are case sensitive.
 
-### Authors
+### Users
 
 Methods:
 
 ```
-GET    /authors (list of Author objects)
-POST   /authors (create new author)
+GET    /users   (closed method, Admin only)
 
-GET    /authors/:id 
-PUT    /authors/:id + author object
-DELETE /authors/:id
+POST   /users   (public method, register)
+
+// Token required
+GET    /users/:id (get profile)
+PUT    /users/:id + user object
 ```
 
-__Author Object:__
+__User Object:__
 
 ```
 {
 	"id": 1,
 	"name": "Test",
 	"status": "Yep",
-		
-	"avatar": {
+
+	"avatar_id": 1,	// updatable
+	
+	// expanded object (not updatable)
+	"avatar": { 
 	    "id":   1, 
 		"key":  "9a8935f4-26bc-4e72-80d6-26690b282eb1",
 		"link": "http://ugc.capsulesapp.net/9a8935f4-26bc-4e72-80d6-26690b282eb1"
 		"content_type": "image/jpeg"
 	},
 	
+	"plan_id": 1, // plan_id = 0 is free, default for users plan_id
+
+	// expanded object (RO)
+	"plan": {
+		"id": 1
+		"name": "simple pro",
+		"price": 123.00 
+	}
+
+	// read-only field
+    "paid_till": "2015-10-01T01:01:01Z" // "0001-01-01T00:00:00Z" - free plan
+
     "vkId": "",
     "fbId": "",
     "hide_socials": false
@@ -164,16 +129,11 @@ Update example:
 ```
 Token: f09023a4b37fc7ae1c5d5d48b89b9466
 
-PUT /author/1
+PUT /users/1
 {
 	"name": "New name",
 	"status": "Yep yep",
-	
-    "avatar": {
-        "id":  "1",
-    	"key": "1b2345f4-66bc-5e72-20d1-14321a543eb2" // client generated uuid, see "Working with media" part.
-    	"content_type": "image/jpeg"
-	}
+    "avatar_id": 10
 }
 ```
 
